@@ -1,7 +1,7 @@
 module Day2 where
 
 import Prelude
-import Control.Exception (evaluate)
+import Utils
 
 data Colour = Red | Green | Blue deriving (Show)
 data Move = Move { colour :: Colour, value :: Int } deriving (Show)
@@ -13,16 +13,6 @@ type Restriction = [Move]
 trimLeading :: String -> String
 trimLeading (' ' : xs) = trimLeading xs
 trimLeading xs = xs
-
-_split :: Char -> String -> String -> [String]
-_split c (x : xs) accum = if c == x
-    then accum : _split c xs []
-    else _split c xs (accum ++ [x])
-
-_split _ [] accum = [accum]
-
-split :: Char -> String -> [String]
-split c xs = _split c xs []
 
 parseGameId :: String -> Int
 parseGameId input = do
